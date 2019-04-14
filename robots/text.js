@@ -10,7 +10,10 @@ async function robot(content) {
 	async function fetchContentFromWikipedia(content) {
 		const algorithmiaAuthenticated = algorithmia(algorithmiaApiKey)
 		const wikipediaAlgorithm = algorithmiaAuthenticated.algo('web/WikipediaParser/0.1.2')
-		const wikipediaResponde = await wikipediaAlgorithm.pipe(content.searchTerm)
+		const wikipediaResponde = await wikipediaAlgorithm.pipe({
+			"lang" : "pt",
+			"articleName" : content.searchTerm
+		})
 		const wikipediaContent = wikipediaResponde.get()
 
 		// Salvando busca na estrutura de dados
