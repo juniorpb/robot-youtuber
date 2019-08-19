@@ -1,5 +1,5 @@
-const algorithmia 				= require('algorithmia')
-const algorithmiaApiKey 		= require('../credentials/algorithmia.json').apiKey
+const algorithmia = require('algorithmia')
+const algorithmiaApiKey = require('../credentials/algorithmia.json').apiKey
 const sentenceBoundaryDetection	= require('sbd')
 
 const watsonApiKey = require('../credentials/watson-nlu.json').apikey
@@ -35,7 +35,8 @@ async function robot() {
 		// Salvando busca na estrutura de dados
 		content.sourceContentOriginal = wikipediaContent.content
 	}
-
+	
+	// tratando/limpando o dado
 	function sanitizeContent(content) {
 		const withoutBlankLinesAndMarkdown = removeBlankLinesAndMarkdown(content.sourceContentOriginal)
 		const withoutDatesInParentheses = removeDatesInParentheses(withoutBlankLinesAndMarkdown)
@@ -112,6 +113,5 @@ async function robot() {
 	}
 
 }
-
 
 module.exports = robot
