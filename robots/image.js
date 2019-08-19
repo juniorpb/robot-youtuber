@@ -10,13 +10,13 @@ const googleSearchCredentials = require('../credentials/google-search.json')
 async function robot() {
 	const content = state.load()
 
-	// await fetchImageOfAllSentences(content)
-	// await downloadAllImagem(content)
-	//await convertAllImages(content)
-	//await createAllSentenceImages(content)
+	await fetchImageOfAllSentences(content)
+	await downloadAllImagem(content)
+	await convertAllImages(content)
+	await createAllSentenceImages(content)
 	await createYouTubeThumbnail()
 
-	// state.save(content)
+	state.save(content)
 
 	async function fetchImageOfAllSentences(content){
 		for (const sentence of content.sentences) {
@@ -51,7 +51,6 @@ async function robot() {
 	async function downloadAllImagem(content) {
 		content.downloadedImagem = []
 
-	
 		for (let sentenceIndex = 0; sentenceIndex < content.sentences.length; sentenceIndex++) {
 			const images = content.sentences[sentenceIndex].images
 
